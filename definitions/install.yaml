@@ -2430,7 +2430,10 @@ spec:
       - args:
         - --filterK8sResources=[Event,*,*][*,kube-system,*][*,kube-public,*][*,kube-node-lease,*][Node,*,*][APIService,*,*][TokenReview,*,*][SubjectAccessReview,*,*][*,kyverno,*][Binding,*,*][ReplicaSet,*,*][ReportChangeRequest,*,*][ClusterReportChangeRequest,*,*][PolicyReport,*,*][ClusterPolicyReport,*,*]
         - -v=2
+          #- --profile=true
         env:
+        - name: GOGC
+          value: "25"
         - name: INIT_CONFIG
           value: init-config
         - name: KYVERNO_NAMESPACE
