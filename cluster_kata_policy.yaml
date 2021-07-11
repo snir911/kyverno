@@ -1,0 +1,15 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-kata-runtimeclass
+spec:
+  rules:
+  - name: "Set RuntimeClass to kata"
+    match:
+      resources:
+        kinds:
+        - Pod
+    mutate:
+      overlay:
+        spec:
+         runtimeClassName: kata

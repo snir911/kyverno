@@ -1,0 +1,17 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-kata-runtimeclass-e2e-ns
+spec:
+  rules:
+  - name: "Set RuntimeClass to kata in e2e-* namespaces"
+    match:
+      resources:
+        kinds:
+        - Pod
+        namespaces:
+        - "e2e-*"
+    mutate:
+      overlay:
+        spec:
+         runtimeClassName: kata
